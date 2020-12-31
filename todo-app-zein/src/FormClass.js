@@ -6,9 +6,9 @@ export default class FormToDoClass extends React.Component {
     clicked: false,
   };
 
-  //   handleDeleteBtn = () => {
-  //     this.setState({clicked: true});
-  //   }
+//   handleDeleteBtn = () => {
+//     this.setState({ clicked: true });
+//   };
 
   handleInput = (event) => {
     this.setState({ list: event.target.value });
@@ -16,7 +16,7 @@ export default class FormToDoClass extends React.Component {
 
   toDos = [];
   render() {
-    const { list /*clicked*/ } = this.state;
+    const { list } = this.state;
     return (
       <div>
         <form
