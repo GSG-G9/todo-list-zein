@@ -6,9 +6,17 @@ export default class FormToDoClass extends React.Component {
     clicked: false,
   };
 
+  //   handleDeleteBtn = () => {
+  //     this.setState({clicked: true});
+  //   }
+
+  handleInput = (event) => {
+    this.setState({ list: event.target.value });
+  };
+
   toDos = [];
   render() {
-    const { list , /*clicked*/} = this.state;
+    const { list /*clicked*/ } = this.state;
     return (
       <div>
         <form
@@ -24,9 +32,7 @@ export default class FormToDoClass extends React.Component {
               type="text"
               className="list-input"
               value={list}
-              onChange={(event) => {
-                this.setState({ list: event.target.value });
-              }}
+              onChange={this.handleInput}
             />
             <input type="submit" className="add-btn" />
           </fieldset>
@@ -38,7 +44,7 @@ export default class FormToDoClass extends React.Component {
                 return (
                   <div key={Math.random() * 10}>
                     <p>{item}</p>
-                    {/*<button onClick={()=>{this.setState({clicked: true})}}>delete</button>*/}
+                    {/* <button onClick={this.handleDeleteBtn}>delete</button> */}
                   </div>
                 );
               })
