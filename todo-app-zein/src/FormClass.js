@@ -3,21 +3,21 @@ import React from "react";
 export default class FormToDoClass extends React.Component {
   state = {
     list: "",
-    newToDo: "",
     clicked: false,
   };
 
-  
-
-
+  toDos = [];
   render() {
-      const toDos = [];
-    const { list, newToDo } = this.state;
+    const { list , /*clicked*/} = this.state;
     return (
       <div>
-        <form onSubmit={(event)=>{
-            event.preventDefault();
-        }}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            this.toDos.push(list);
+            console.log(this.toDos);
+          }}
+        >
           <fieldset>
             <legend>To Do List</legend>
             <input
@@ -28,29 +28,17 @@ export default class FormToDoClass extends React.Component {
                 this.setState({ list: event.target.value });
               }}
             />
-            <button
-            type="submit"
-              className="add-btn"
-              onClick={() => {
-                this.setState({ newToDo: this.state.list });
-                toDos.push(newToDo);
-              }}
-            >
-              Add
-            </button>
+            <input type="submit" className="add-btn" />
           </fieldset>
         </form>
 
         <div className="output">
-          {toDos.length
-            ? toDos.map((item) => {
-                console.log(toDos)
+          {this.toDos.length > 0
+            ? this.toDos.map((item) => {
                 return (
-                  <div
-                    className="todo-item"
-                    key={Math.floor(Math.random() * 10)}
-                  >
-                    <p className="items">{item.newToDo}</p>
+                  <div key={Math.random() * 10}>
+                    <p>{item}</p>
+                    {/*<button onClick={()=>{this.setState({clicked: true})}}>delete</button>*/}
                   </div>
                 );
               })
